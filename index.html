@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Speed Logistics | Cargo Visibility</title>
+<link rel="stylesheet" href="src/css/styles.css" />
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand"><div class="brandmark">S</div><div>speed logistics<small>CARGO VISIBILITY PLATFORM</small></div></div>
+    <div class="top-right"><span><i class="live-dot"></i><span class="hide-mobile">DEMO ENVIRONMENT</span></span><span style="opacity:.55">|</span><span>v2.0 prototype</span><button id="themeToggle" class="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch theme">🌙 <span class="hide-mobile">Dark mode</span></button></div>
+  </header>
+  <main class="page">
+    <section class="hero">
+      <div><div class="eyebrow">One shipment. Complete visibility.</div><h1>Know where every shipment stands.</h1><p>Track cargo from order acceptance to proof of delivery — with a shared timeline for customers and operations.</p></div>
+      <div class="demo-pill">● SIMULATED LIVE DATA · PRESENTATION MODE</div>
+    </section>
+    <nav class="tabs" aria-label="Application views">
+      <button class="tab active" data-panel="customer">⌕ Customer tracking</button>
+      <button class="tab" data-panel="operations">▦ Operations</button>
+      <button class="tab" data-panel="delivery">↗ Delivery desk</button>
+    </nav>
+
+    <section id="customer" class="panel active">
+      <div class="customer-grid">
+        <div class="card card-pad">
+          <div class="section-head"><div><h2>Track your shipment</h2><p>Enter your Speed Logistics tracking ID.</p></div><span class="status blue">TRACKING PORTAL</span></div>
+          <div class="search-row"><input id="trackingSearch" class="input" value="SL-2026-1042" placeholder="e.g. SL-2026-1042" aria-label="Tracking ID"/><button id="trackBtn" class="btn primary">Track shipment →</button></div>
+          <div class="sample-links">Try a demo shipment: <button class="text-link" data-track="SL-2026-1042">SL-2026-1042</button><button class="text-link" data-track="SL-2026-1043">SL-2026-1043</button></div>
+          <div id="customerResult" style="margin-top:24px"></div>
+        </div>
+        <div class="card card-pad">
+          <div class="section-head"><div><h2>Shipment journey</h2><p>Every checkpoint is timestamped.</p></div><span style="font-size:20px">◷</span></div>
+          <div id="customerTimeline" class="timeline"></div>
+          <div class="notice" style="margin-top:2px">Tracking events are shared with this portal from the same shipment record used by operations. Demo location and carrier data are simulated.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="operations" class="panel">
+      <div class="stats" id="stats"></div>
+      <div class="ops-layout">
+        <div class="card">
+          <div class="card-pad">
+            <div class="section-head"><div><h2>Shipment control centre</h2><p>Manage the shipment lifecycle in one place.</p></div><button id="newShipmentBtn" class="btn primary">＋ New shipment</button></div>
+            <div class="ops-filters"><div class="field"><label for="opsSearch">SEARCH SHIPMENTS</label><input id="opsSearch" class="input" placeholder="Tracking ID, destination, recipient…"/></div><div class="field"><label for="statusFilter">FILTER BY STATUS</label><select id="statusFilter" class="input"><option value="all">All statuses</option></select></div></div>
+          </div>
+          <div class="table-wrap"><table><thead><tr><th>Shipment</th><th>Current status</th><th>Last location</th><th>Action</th></tr></thead><tbody id="shipmentRows"></tbody></table></div>
+          <div class="card-pad"><div class="notice">Tip for the demo: open <b>SL-2026-1042</b>, then use “Advance stage” to walk the shipment from warehouse to delivery.</div></div>
+        </div>
+        <div class="card card-pad">
+          <div class="section-head"><div><h2>Update shipment</h2><p>Choose a shipment to record a checkpoint.</p></div><span style="font-size:20px">⌁</span></div>
+          <div id="opsEditor"><div class="empty"><div class="empty-icon">▤</div>Select a shipment from the table to manage its details.</div></div>
+          <div class="activity-wrap"><div class="section-head"><div><h3>Shipment activity</h3><p>Recent recorded changes for the selected shipment.</p></div></div><div id="activityHistory" class="activity-history"><div class="empty">Select a shipment to view its activity.</div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="delivery" class="panel">
+      <div class="section-head" style="margin-bottom:18px"><div><div class="eyebrow">Last-mile operations</div><h2 style="font-size:24px;margin:6px 0">Delivery desk</h2><p class="muted small">Assign a delivery partner and record delivery completion.</p></div><span class="status amber">DEMO WORKFLOW</span></div>
+      <div class="dashboard-grid">
+        <div class="card card-pad"><div class="section-head"><div><h3>Delivery queue</h3><p>Review delivery handoffs and correct shipment statuses when needed.</p></div></div><div id="deliveryQueue" class="delivery-list"></div></div>
+        <div class="card card-pad"><div class="section-head"><div><h3>Delivery handoff</h3><p>Assignment and proof of delivery.</p></div></div><div id="deliveryEditor"><div class="empty"><div class="empty-icon">♧</div>Select a shipment from the delivery queue.</div></div></div>
+      </div>
+    </section>
+    <div class="footer">SPEED LOGISTICS · WORKING PROTOTYPE · SAMPLE DATA ONLY · No live GPS, airline or messaging integrations</div>
+  </main>
+</div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<div id="modalRoot"></div>
+<script src="src/js/app.js" defer></script>
+</body>
+</html>
