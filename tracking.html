@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Track a Speed Logistics shipment and view its latest recorded status." />
+  <title>Track a shipment | Speed Logistics</title>
+  <link rel="stylesheet" href="src/css/styles.css" />
+  <style>
+    .tracking-page{max-width:1120px;margin:0 auto;padding:32px 22px 56px}.tracking-header{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:38px}.tracking-header .brand{color:#fff}.tracking-header .brand small{color:#b7c8df}.back-link{color:#dce8f8;text-decoration:none;font-size:12px;font-weight:700}.tracking-intro{text-align:center;max-width:700px;margin:0 auto 28px}.tracking-intro h1{font-size:clamp(30px,5vw,43px);letter-spacing:-1.5px;margin:10px 0}.tracking-intro p{color:var(--muted);line-height:1.7;margin:0}.tracking-search{max-width:760px;margin:0 auto 22px;padding:9px;display:flex;gap:10px}.tracking-search .input{min-height:50px}.tracking-search .btn{min-width:150px}.tracking-results{max-width:1000px;margin:0 auto}.tracking-result-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(300px,.9fr);gap:18px;align-items:start}.tracking-footnote{text-align:center;color:var(--muted);font-size:10px;margin-top:24px;line-height:1.7}.tracking-page .card{padding:24px}.tracking-route{display:grid;grid-template-columns:1fr 80px 1fr;align-items:center;gap:12px;padding:22px 0;border-bottom:1px solid var(--v2-border);margin-bottom:20px}.tracking-route .city{font-size:19px;font-weight:800;letter-spacing:-.5px}.tracking-route .code{font-size:11px;color:var(--muted);margin-top:5px}.tracking-route .route-mid{text-align:center;color:var(--v4-blue)}.tracking-route .route-mid span{display:block;border-top:1px dashed #9aaac0;margin-top:8px}.tracking-page .agent-card{margin-top:16px}.tracking-page .shipment-title{align-items:center}.tracking-page .shipment-title h2{font-size:22px}.tracking-page .timeline{margin-top:12px}.tracking-page .event{padding-bottom:18px}.tracking-page .progress-track{margin-top:12px}.tracking-empty{margin-top:14px}
+    @media(max-width:720px){.tracking-page{padding:20px 14px 38px}.tracking-header{margin-bottom:30px}.tracking-intro{margin-bottom:22px}.tracking-search{flex-direction:column;padding:12px}.tracking-search .btn{width:100%}.tracking-result-grid{grid-template-columns:1fr}.tracking-page .card{padding:18px}.tracking-route{grid-template-columns:minmax(0,1fr) 40px minmax(0,1fr);gap:8px}.tracking-route .city{font-size:16px}.tracking-route .code{font-size:10px}.tracking-page .shipment-title{align-items:flex-start;flex-direction:column}}
+  </style>
+</head>
+<body>
+  <header class="topbar tracking-header">
+    <div class="brand"><div class="brandmark">S<span>↗</span></div><div>speed logistics<small>CARGO TRACKING</small></div></div>
+    <a class="back-link" href="index.html">← Staff workspace</a>
+  </header>
+  <main class="tracking-page">
+    <section class="tracking-intro"><div class="eyebrow">SHIPMENT VISIBILITY</div><h1>Your shipment, clearly tracked.</h1><p>Enter your tracking ID to see the latest recorded checkpoint, delivery progress, and available delivery contact information.</p></section>
+    <form class="card tracking-search" id="publicTrackForm"><input id="publicTrackingSearch" class="input" placeholder="Enter tracking ID, e.g. SL-2026-1042" aria-label="Tracking ID" autocomplete="off" /><button class="btn primary" type="submit">Track shipment <span aria-hidden="true">→</span></button></form>
+    <div class="sample-links" style="justify-content:center;margin:0 auto 22px">Try a demo shipment: <button class="text-link" data-public-track="SL-2026-1042">SL-2026-1042</button><button class="text-link" data-public-track="SL-2026-1043">SL-2026-1043</button><button class="text-link" data-public-track="SL-2026-1044">SL-2026-1044</button><button class="text-link" data-public-track="SL-2026-1045">SL-2026-1045</button><button class="text-link" data-public-track="SL-2026-1046">SL-2026-1046</button></div>
+    <div id="publicTrackingResult" class="tracking-results"></div>
+    <p class="tracking-footnote">DEMO ENVIRONMENT · Shipment updates and delivery-agent details are simulated and stored in this browser. No live GPS or carrier integration.</p>
+  </main>
+  <script src="src/js/tracking.js" defer></script>
+</body>
+</html>
