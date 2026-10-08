@@ -3,32 +3,45 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Speed Logistics | Cargo Visibility</title>
+<title>Speed Logistics | Control Tower</title>
+<meta name="description" content="Speed Logistics shipment operations and delivery management prototype." />
 <link rel="stylesheet" href="src/css/styles.css" />
 </head>
 <body>
 <div class="app">
   <header class="topbar">
-    <div class="brand"><div class="brandmark">S</div><div>speed logistics<small>CARGO VISIBILITY PLATFORM</small></div></div>
-    <div class="top-right"><span><i class="live-dot"></i><span class="hide-mobile">DEMO ENVIRONMENT</span></span><span style="opacity:.55">|</span><span>v2.0 prototype</span><button id="themeToggle" class="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch theme">🌙 <span class="hide-mobile">Dark mode</span></button></div>
+    <div class="brand"><div class="brandmark">S<span>↗</span></div><div>speed logistics<small>CONTROL TOWER</small></div></div>
+    <div class="top-right"><span><i class="live-dot"></i><span class="hide-mobile">DEMO ENVIRONMENT</span></span><span style="opacity:.55">|</span><span>V4 · PREVIEW</span><button id="themeToggle" class="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch theme">🌙 <span class="hide-mobile">Dark mode</span></button></div>
   </header>
   <main class="page">
     <section class="hero">
-      <div><div class="eyebrow">One shipment. Complete visibility.</div><h1>Know where every shipment stands.</h1><p>Track cargo from order acceptance to proof of delivery — with a shared timeline for customers and operations.</p></div>
+      <div><div class="eyebrow">OPERATIONS WORKSPACE / OVERVIEW</div><h1>Good evening, Operations.</h1><p>Here’s the current pulse of your shipment network. Manage shipments, monitor progress, and coordinate final-mile delivery.</p></div>
       <div class="demo-pill">● SIMULATED LIVE DATA · PRESENTATION MODE</div>
     </section>
+    <div class="workspace-shell">
     <nav class="tabs" aria-label="Application views">
-      <button class="tab active" data-panel="customer">⌕ Customer tracking</button>
-      <button class="tab" data-panel="operations">▦ Operations</button>
-      <button class="tab" data-panel="delivery">↗ Delivery desk</button>
+      <div class="nav-label">WORKSPACE</div>
+      <button class="tab active" data-panel="overview"><span class="nav-icon">▦</span> Overview</button>
+      <button class="tab" data-panel="operations"><span class="nav-icon">▤</span> Shipments</button>
+      <button class="tab" data-panel="delivery"><span class="nav-icon">↗</span> Delivery desk</button>
+      <div class="nav-label nav-label-spaced">CUSTOMER EXPERIENCE</div>
+      <a class="nav-public" href="tracking.html"><span class="nav-icon">⌕</span> Customer tracking <span class="external-mark">↗</span></a>
+      <div class="nav-note"><span class="live-dot"></span> Demo environment<br><small>Sample data · No live carrier feed</small></div>
     </nav>
+    <div class="workspace-content">
+    <section id="overview" class="panel active">
+      <div class="overview-top"><div><div class="eyebrow">NETWORK SNAPSHOT</div><h2>Shipment overview</h2><p class="muted">A quick look at current shipment activity.</p></div><button class="btn primary" id="overviewNewShipment">＋ Create shipment</button></div>
+      <div class="stats overview-stats" id="overviewStats"></div>
+      <div class="card overview-table-card"><div class="card-pad"><div class="section-head"><div><h2>Recent shipments</h2><p>Latest records across your shipment network.</p></div><button class="btn soft" id="viewAllShipments">View all shipments →</button></div></div><div class="table-wrap"><table><thead><tr><th>TRACKING ID</th><th>RECIPIENT</th><th>ROUTE</th><th>STATUS</th><th>LAST UPDATE</th><th></th></tr></thead><tbody id="overviewRows"></tbody></table></div></div>
+      <div class="overview-bottom"><div class="card card-pad"><div class="section-head"><div><h3>Shipment lifecycle</h3><p>Eight checkpoints from booking to delivery.</p></div></div><div class="lifecycle-strip"><span>Order accepted</span><i></i><span>In transit</span><i></i><span>Out for delivery</span><i></i><span>Delivered</span></div></div><div class="card card-pad"><div class="section-head"><div><h3>Quick note</h3><p>Prototype environment</p></div><span class="status amber">SIMULATED</span></div><p class="muted small">Shipment events and delivery assignments are stored in this browser. Live GPS, carrier integrations, and shared team data are not connected.</p></div></div>
+    </section>
 
-    <section id="customer" class="panel active">
+    <section id="customer" class="panel">
       <div class="customer-grid">
         <div class="card card-pad">
           <div class="section-head"><div><h2>Track your shipment</h2><p>Enter your Speed Logistics tracking ID.</p></div><span class="status blue">TRACKING PORTAL</span></div>
           <div class="search-row"><input id="trackingSearch" class="input" value="SL-2026-1042" placeholder="e.g. SL-2026-1042" aria-label="Tracking ID"/><button id="trackBtn" class="btn primary">Track shipment →</button></div>
-          <div class="sample-links">Try a demo shipment: <button class="text-link" data-track="SL-2026-1042">SL-2026-1042</button><button class="text-link" data-track="SL-2026-1043">SL-2026-1043</button></div>
+          <div class="sample-links">Try a demo shipment: <button class="text-link" data-track="SL-2026-1042">SL-2026-1042</button><button class="text-link" data-track="SL-2026-1043">SL-2026-1043</button><button class="text-link" data-track="SL-2026-1044">SL-2026-1044</button><button class="text-link" data-track="SL-2026-1045">SL-2026-1045</button><button class="text-link" data-track="SL-2026-1046">SL-2026-1046</button></div>
           <div id="customerResult" style="margin-top:24px"></div>
         </div>
         <div class="card card-pad">
@@ -65,7 +78,9 @@
         <div class="card card-pad"><div class="section-head"><div><h3>Delivery handoff</h3><p>Assignment and proof of delivery.</p></div></div><div id="deliveryEditor"><div class="empty"><div class="empty-icon">♧</div>Select a shipment from the delivery queue.</div></div></div>
       </div>
     </section>
-    <div class="footer">SPEED LOGISTICS · WORKING PROTOTYPE · SAMPLE DATA ONLY · No live GPS, airline or messaging integrations</div>
+    </div><!-- /workspace-content -->
+    </div><!-- /workspace-shell -->
+    <div class="footer">SPEED LOGISTICS · V4 UI PREVIEW · SAMPLE DATA ONLY · No live GPS, carrier or messaging integrations</div>
   </main>
 </div>
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
